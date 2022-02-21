@@ -1,0 +1,296 @@
+﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification\ 
+for details on configuring this project to bundle and minify static web assets. */
+body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+nav {
+    background-color: lightblue;
+}
+
+/* Wrapping element */
+/* Set some basic padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Carousel */
+.carousel-caption p {
+    font-size: 20px;
+    line-height: 1.4;
+}
+
+/* Make .svg files in the carousel display properly in older browsers */
+.carousel-inner .item img[src$=".svg"] {
+    width: 100%;
+}
+
+.verticalNav {
+    width: 150px;
+    height: 100%;
+    background-color: blue;
+    position: fixed;
+}
+
+.verticalNav a{
+    display: block;
+}
+
+.column {
+    float: left;
+    width: 33.33%;
+}
+
+.column h2 {
+    font-weight: bolder;
+    margin: 0;
+    color: #EC255A;
+    text-align:center;
+}
+
+#feed {
+    margin-left:5%;
+    margin-top: 10px;
+}
+
+.createPost {
+    background-color: #EEEEEE;
+    border-radius: 20px;
+    padding: 20px;
+    width: 120%;
+    box-shadow: 0px 5px 5px #B2B2B2;
+}
+
+.createPost textarea{
+    outline:0;
+    resize: none;
+    width: 100%;
+    min-height:100px;
+    border:none;
+    border-radius:10px;
+    padding:5px;
+    background-color: white;
+}
+
+.btn.btn-default {
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+    min-width: 50%;
+    min-height: 40px;
+    border: none;
+    border-radius: 24px;
+    color:white;
+    background: linear-gradient(117.19deg, #3895D3 0%, #58CCED 100%);
+}
+
+button, input[type="button"] {
+    border-radius: 24px;
+    color: white;
+    background: linear-gradient(117.19deg, #3895D3 0%, #58CCED 100%);
+    min-height: 40px;
+    min-width: 150px;
+    border:none;
+}
+
+
+.createPost h4 {
+    text-align:center;
+}
+
+.post {
+    background-color: #EEEEEE;
+    border-radius: 20px;
+    margin: auto;
+    margin-bottom: 10px;
+    padding: 10px;
+    width: 80%;
+    word-wrap:break-word;
+    padding: 20px;
+}
+
+.post hr {
+    background-color: #87b9d3;
+    border: none;
+    height: 2px;
+}
+
+.post h4 {
+    margin: 0px;
+    font-weight: bold;
+}
+
+
+.post label{
+    margin-top: 0px;
+    font-size: 10px;
+    font-weight: lighter;
+    color: grey;
+}
+
+.post p{
+    font-size: 20px;
+    margin: auto;
+    margin-right: 47px;
+    margin-bottom: 5px;
+    max-width: 70%;         
+}
+
+.post a {
+    color: #EC255A;
+    font-weight: bold;
+    font-size: 16px;
+    display: block;
+    margin-left: auto;
+    margin-right: 0;
+}
+
+.post .deleteBtn{
+    font-size: 11px;
+    color:white;
+    background-color: red;
+    border-radius: 40px;
+    float:right;
+    font-weight: lighter;
+    padding: 5px 10px;
+}
+
+a:hover {
+    text-decoration:none;
+}
+
+nav .profileContainer {
+    background-color: #0e5279;
+    color: white;
+    float: left;
+    display: block;
+    text-align: center;
+    min-width: 100px;
+    max-width: 300px;
+    border-radius: 0px 40px 40px 0px;
+    position: absolute;
+}
+
+nav .profileContainer a{
+    color: white;
+}
+
+nav .profileContainer:hover {
+    background-color: #4d7dd4;
+}
+
+
+.reply {
+    display: inline-block;
+    background-color: #87b9d3;
+    min-height: 60px;
+    width: 100%;
+    font-size: 0;
+}
+
+.reply h4 a{
+    font-size: 15px;
+}
+
+.reply p{
+    font-size: 16px;
+}
+
+.PostProfilePic {
+    background-color: #6998AB;
+    width: 70px;
+    height: 70px;
+    margin-right: 0px;
+    float: left;
+    border-radius: 50%;
+    overflow:hidden;
+    display:flex;
+    justify-content:center;
+}
+
+.PostProfilePic img {
+    max-height: 100%;
+    max-width: 100%;
+    min-height: auto;
+    min-width: auto;
+}
+
+.reply .PostProfilePic{
+    width: 55px;
+    height: 55px;
+}
+
+/* QR code generator */
+#qrCode {
+    margin: 15px;
+}
+
+.profile_image {
+    border-radius: 24px;
+    display: flex;
+    justify-content: center;
+}
+
+.profile-image-div {
+    display: flex;
+    justify-content: center;
+}
+
+.profile-info {
+    color: white;
+    padding-left: 0px;
+    padding: 20px;
+    list-style: none;
+    font-size:18px;
+}
+
+.profile-info li {
+    padding:10px;
+}
+
+.profile-info-list {
+    display: flex;
+    justify-content: center;
+}
+
+.profile-div {
+    color: white;
+    background-color: #333333;
+    justify-items:center;
+    padding: 50px;
+    border-radius:24px;
+    margin-top:50px;
+}
+
+.follow {
+    display: grid;
+    grid-template-columns: 0.5fr 0.5fr;
+    margin-top: 50px;
+    border-radius: 24px;
+    background-color: #B1D0E0;
+}
+
+.followers {
+    grid-column: 2;
+    padding: 25px;
+}
+
+.following {
+    grid-column: 1;
+    padding: 25px;
+}
+
+.table 
+/* Hide/rearrange for smaller screens */
+@media screen and (max-width: 767px) {
+    /* Hide captions */
+    .carousel-caption {
+        display: none;
+    }
+}
+
+.post h4 a {
+    color: black !important;
+}

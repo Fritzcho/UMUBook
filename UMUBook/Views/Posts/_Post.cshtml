@@ -1,0 +1,77 @@
+﻿@model UMUBook.Models.PostPartialViewModel
+
+<div class="post">
+    <div class="PostProfilePic">
+        <img src="~/images/@Model.Post.Profile.ProfilePicturePath" />
+    </div>
+
+    <div style="margin-left: 90px;">
+        <h4><a asp-action="Profile" asp-controller="User" asp-route-username="@Model.Post.PosterUsername">@Model.Post.Profile.Displayname</a></h4>
+        <label>@Model.Post.PostDate</label>
+    </div>
+
+    <p>@Model.Post.PostText</p>
+
+
+
+
+
+    @if (Model.Post.Responses.Count > 0)
+    {
+        foreach (PostsModel reply in Model.Post.Responses.GetRange(0, Math.Min(Model.Post.Responses.Count, Model.RepliesShown)))
+        {
+            <div class="post reply">
+                <div class="PostProfilePic">
+                    <img src="~/images/@reply.Profile.ProfilePicturePath" />
+                </div>
+
+                <div style="margin-left: 70px;">
+                    <h4><a asp-action="Profile" asp-controller="User" asp-route-username="@reply.PosterUsername">@reply.Profile.Displayname</a></h4>
+                    <label>@reply.PostDate</label>
+                </div>
+
+                <p>@reply.PostText</p>
+
+
+                @if (reply.PosterUsername.Equals(User.Identity.Name))
+                {
+                    <a asp-action="DeletePost" asp-controller="Posts" asp-route-postID="@reply.PostID" class="deleteBtn">Delete</a>
+                }
+            </div>
+        }
+    }
+
+    @if (Model.Post.PosterUsername.Equals(User.Identity.Name))
+    {
+        <a asp-action="DeletePost" asp-controller="Posts" asp-route-postID="@Model.Post.PostID" class="deleteBtn" style="float:right">Delete</a>
+    }
+
+    <div id="LikeArea" style="height: 30px; width: 100%; display:flex; font-weight: lighter">
+        <a href="@Url.Action("Post", "Posts", new { PostID = Model.Post.PostID })">@Model.Post.Responses.Count replies</a>
+
+        @if (Model.Post.LikedByLoggedIn)
+        {
+            <a class="LikeButton" id="markAsLiked" asp-action="LikePost" asp-controller="User" asp-route-post="@Model.Post.PostID">@Model.Post.Likes unlike</a>
+        }
+        else
+        {
+            <a class="LikeButton" asp-action="LikePost" asp-controller="User" asp-route-post="@Model.Post.PostID">@Model.Post.Likes likes</a>
+        }
+        @if (Model.Post.SharedByLoggedIn)
+        {
+            <a class="ShareButton" id="markAsLiked" asp-action="SharePost" asp-controller="User" asp-route-post="@Model.Post.PostID">shared</a>
+        }
+        else
+        {
+            <a class="ShareButton" asp-action="SharePost" asp-controller="User" asp-route-post="@Model.Post.PostID">share</a>
+        }
+        <style>
+            #markAsLiked {
+                color: grey;
+            }
+        </style>
+        @*<a asp-action="LikePost" asp-controller="User" asp-route-post="@Model.Post.PostID" class="btn btn-primary">Like</a>*@
+    </div>
+
+
+</div>

@@ -1,0 +1,124 @@
+﻿@model UMUBook.Models.ProfileModel
+
+@{
+    ViewData["Title"] = "Profile";
+}
+
+<div class="column" style="width:40%">
+    <div class="profile-div">
+        <div class="profile-image-div">
+            <img src="~/images/@Model.ProfilePicturePath"
+                 class="profile_image"
+                 height="250"
+                 asp-append-version="true" />
+        </div>
+        <div class="profile-info-list">
+            <ul class="profile-info">
+                <li>
+                    <b>@Html.DisplayNameFor(model => model.Username):</b> @Html.DisplayFor(model => model.Username)
+                </li>
+                <li>
+                    <b>@Html.DisplayNameFor(model => model.Bio):</b> @Html.DisplayFor(model => model.Bio)
+                </li>
+                <li>
+                    <b>@Html.DisplayNameFor(model => model.Displayname):</b> @Html.DisplayFor(model => model.Displayname)
+                </li>
+            </ul>
+        </div>
+        @if (Model.Username.Equals(User.Identity.Name))
+        {
+            <a asp-area="" asp-controller="User" asp-action="EditProfile" asp-route-username="@User.Identity.Name" class="form-control"
+               style="width:150px;float:left;background-color:deepskyblue;font-size:14px;font-weight:500;">
+                Edit Profile
+            </a>
+            <a asp-area="" asp-controller="User" asp-action="LogoutUser" style="float:right;">Sign out</a>
+        }
+        else
+        {
+            <a asp-action="ProfileFollowing" asp-controller="User" asp-route-username="@Model.Username" asp-for="Username" class="form-control"
+               style="width:150px;float:right;background-color:deepskyblue;font-size:14px;font-weight:500;">
+                @ViewBag.followingstatus
+            </a>
+            <span asp-validation-for="Username" class="btn"></span>
+        }
+    </div>
+    
+    <div class="follow">
+        @if (ViewData["Following"] != null)
+        {
+            <div class="following">
+
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th><label>@ViewData["followingcount"] </label> Following</th>
+
+                        </tr>
+                    </thead>
+                    @foreach (var item in (List<ProfileModel>)ViewData["Following"])
+                    {
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <a asp-action="Profile" asp-controller="User" asp-route-username="@item.Username"> @Html.DisplayFor(model => item.Username)</a>
+                                </td>
+
+                            </tr>
+                        </tbody>
+                    }
+                </table>
+
+            </div>
+
+        }
+
+        @if (ViewData["Followers"] != null)
+        {
+            <div class="followers">
+
+
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th><label>@ViewData["followcount"]</label> Followers</th>
+                        </tr>
+                    </thead>
+                    @foreach (var item in (List<ProfileModel>)ViewData["Followers"])
+                    {
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <a asp-action="Profile" asp-controller="User" asp-route-username="@item.Username">@Html.DisplayFor(model => item.Username)</a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    }
+                </table>
+
+
+
+            </div>
+        }
+    </div>
+</div>
+
+<div class="column" style="width: 60%; margin-top: 50px;">
+    @if (((List<PostsModel>)ViewBag.posts).Count > 0)
+    {
+        foreach (PostsModel p in (List<PostsModel>)ViewBag.posts)
+        {
+            @await Html.PartialAsync("../Posts/_Post.cshtml", new PostPartialViewModel { Post = p, RepliesShown = 3 })
+            <parial name="../Posts/_CreatePost.cshtml" />
+        }
+    }
+    else
+    {
+        <h2>No posts found :(</h2>
+    }
+
+</div>
+
+
+
+@TempData["error"]
+@ViewBag.error

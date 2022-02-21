@@ -1,0 +1,21 @@
+﻿@model UMUBook.Models.PostsModel
+<form asp-controller="Posts" asp-action="_CreatePost" method="post" class="createPost" style="position:sticky">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <h4>Create post</h4>
+    <div class="form-group" style="display:none">           
+        @Html.TextBoxFor(m => m.ReplyID);
+        <span asp-validation-for="ReplyID" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        @Html.TextAreaFor(m => m.PostText, 3, 30, null)
+        <span asp-validation-for="PostText" class="text-danger" style="border-radius:14px;"></span>
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Create" class="btn btn-default" />
+    </div>
+</form>
+
+<div>
+    <label>@TempData["error"]</label>
+</div>
+

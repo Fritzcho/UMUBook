@@ -1,0 +1,9 @@
+﻿
+@model IEnumerable<UMUBook.Models.PostsModel>
+
+@foreach (var item in Model)
+{
+    <div class="col-1-3">
+        @await Html.PartialAsync("../Posts/_Post.cshtml", new PostPartialViewModel { Post = item, RepliesShown = 3 })
+    </div>
+}
